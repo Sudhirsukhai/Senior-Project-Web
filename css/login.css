@@ -1,0 +1,26 @@
+body{
+    background-color: #cacfd2;
+    text-emphasis-style:;
+}
+#login{
+    background-color: white;
+    border-style:solid;
+    border-radius: 30px;
+    border-width: 0.1cm;
+    text-align-last: center;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    padding: 5%;
+    padding-top: 7%;
+    padding-bottom: 7%;
+    font-family:Verdana;
+}
+#Sub{
+    border-style: dotted;
+    border-radius: 5px; 
+}
+input{
+    border-radius: 5px;
+}
