@@ -1,6 +1,5 @@
 body{
     background-color: #cacfd2;
-    text-emphasis-style:;
 }
 #login{
     background-color: white;
@@ -23,4 +22,7 @@ body{
 }
 input{
     border-radius: 5px;
+}
+#RegLink{
+    float: right;
 }
