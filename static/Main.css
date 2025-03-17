@@ -1,0 +1,29 @@
+body{
+    background-color: #cacfd2;
+}
+#Header1{
+    margin-top: 3%;
+    margin-left:45%;
+}
+#Breakfast,#Lunch,#Dinner,#Snacks{
+    background-color: white;
+    border-style:solid;
+    border-radius: 30px;
+    border-width: 0.1cm;
+    text-align-last: center;
+    max-width: fit-content;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 5%;
+    padding: 1%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    font-family:Verdana;
+}
+#brimg{
+    width: auto;
+    height:200px;
+}
+#logBr,#logLn,#logDn,#logSn{
+    align-self: self-start;
+}

@@ -6,17 +6,17 @@
         <link rel="stylesheet" href="/static/login.css"><!/Users/sudhi/Desktop/Senior Project 0.1/Senior-Project-Web>
     </head>
     <body>
-        <div id="login">
+        <div id="CalLg">
             <h1 id="logHd">
                 Sign In
             </h1><br>
             <form method="POST">
-                <label for="Uname">Username:</label><br>
-                <input type="text" id="Uname" name="Uname"><br><br>
-                <label for="Pass">Password:</label><br>
-                <input type="text" id="Pass" name="Pass"><br><br>
+                <label for="food">Food:</label><br>
+                <input type="text" id="Food" name="Food"><br><br>
+                <label for="Cal">Calories:</label><br>
+                <input type="text" id="Cal" name="Cal"><br><br>
                 <button type="submit" id="Sub">Login</button><br><br>
-                <a href="{{url_for('register')}}" id="RegLink">Sign Up</a>
+                <a href="{{url_for('MainPage)}}" id="RegLink">Sign Up</a>
             </form>
         </div>
     </body>

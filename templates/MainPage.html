@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="/static/Main.css"><!/Users/sudhi/Desktop/Senior Project 0.1/Senior-Project-Web>
+    </head>
+    <body>
+        <div id="Header1"><h1>Calories</h1></div>
+        <div id="Breakfast">
+            <h1 id="logBr">
+                Breakfast
+            </h1><br>
+            <img id="brimg" src="\static\breakfast.jpg" alt="Breakfast Plate">
+            <p>
+                Log Your breakfast meals!!
+            </p>
+            <a href="{{url_for('register')}}">Log</a>
+        </div>
+        <div id="Lunch">
+            <h1 id="logLn">
+                Lunch
+            </h1><br>
+            <img src="\static\lunch.jpg" alt="Lunch Plate">
+            <p>
+                Log Your lunch meals!!
+            </p>
+            <a href="{{url_for('register')}}">Log</a>
+        </div>
+        <div id="Dinner">
+            <h1 id="logDn">
+                Dinner
+            </h1><br>
+            <img src="\static\dinner.jpg" alt="Dinner Plate">
+            <p>
+                Log Your dinner meals!!
+            </p>
+            <a href="{{url_for('register')}}">Log</a>
+        </div>
+        <div id="Snacks">
+            <h1 id="logSn">
+                Snacks
+            </h1><br>
+            <img src="\static\Snack.jpeg" alt="Snack Plate">
+            <p>
+                Log Snacks here!!
+            </p>
+            <a href="{{url_for('register')}}">Log</a>
+        </div>
+    </body>
+</html> 

@@ -1,24 +1,40 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for,request,flash
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import UserMixin
 
 app=Flask(__name__)
-db = SQLAlchemy(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-app.config['SECRET_KEY'] = 'thisisasecretkey'
 
-class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), nullable=False)
-    password = db.Column(db.String(80), nullable=False)
 
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def home():
-    return render_template('index.html')
+    data=request.form
+    print(data)
+    return render_template('index.html', boolean=True)
 
-@app.route('/register')
+@app.route('/register',methods=['GET','POST'])
 def register():
+    if request.method == 'POST':
+        username = request.form.get('Uname')
+        Pass = request.form.get('Pass')
+        Pass2 = request.form.get('ConPass')
+        if len(Pass)<4:
+            flash('Email must be greater than 4 characters.', category='error')
+            pass
+        elif len(username)<2:
+            flash('Password must be greater than 2 characters.', category='error')
+            pass
+        elif Pass!= Pass2:
+            flash('Passwords do not match.', category='error')
+            pass
+        else:
+            flash('Account Created.', category='Success')
+            #add user
+            pass
+
     return render_template('register.html')
+
+@app.route('/Main')
+def Main():
+    return render_template('MainPage.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
