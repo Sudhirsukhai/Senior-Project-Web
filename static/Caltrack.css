@@ -1,0 +1,47 @@
+body {
+            background-color: #cacfd2;
+            font-family: Verdana, sans-serif;
+        }
+        #Header1 {
+            margin-top: 3%;
+            margin-left: 40%;
+        }
+        #BMRCard {
+            background-color: white;
+            border-style: solid;
+            border-radius: 30px;
+            border-width: 0.1cm;
+            text-align-last: center;
+            max-width: fit-content;
+            margin: 5% auto;
+            padding: 3%;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            text-align: left;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-family: Verdana;
+        }
+        button {
+            background-color: #2e86c1;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1b4f72;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: green;
+            text-align: center;
+            font-size: 1.2em;
+        }

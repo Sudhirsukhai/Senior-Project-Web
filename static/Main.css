@@ -5,6 +5,25 @@ body{
     margin-top: 3%;
     margin-left:45%;
 }
+#Header2{
+    margin-top: 3%;
+    margin-left:41.5%;
+}
+#calBurn{
+    background-color: white;
+    border-style:solid;
+    border-radius: 30px;
+    border-width: 0.1cm;
+    text-align-last: center;
+    max-width: fit-content;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 5%;
+    padding: 1%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    font-family:Verdana;
+}
 #Breakfast,#Lunch,#Dinner,#Snacks{
     background-color: white;
     border-style:solid;

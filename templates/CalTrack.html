@@ -1,9 +1,44 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="/static/Caltrack.css"><!/Users/sudhi/Desktop/Senior Project 0.1/Senior-Project-Web>
+        <!Women: BMR = 655.0955 + (9.5634 x weight in kg) + (1.8496 x height in cm) - (4.6756 x age in years). 
+        Men: BMR = 66.4730 + (13.7516 x weight in kg) + (5.0033 x height in cm) - (6.7550 x age in years). >
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body>
-    </body>
+        <div id="Header1">
+        <h1>BMR Calculator</h1>
+    </div>
+
+    <div id="BMRCard">
+        <form action="/bmr" method="POST">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="">Select...</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+
+            <label for="age">Age (years):</label>
+            <input type="number" id="age" name="age" min="10" required>
+
+            <label for="height">Height (cm):</label>
+            <input type="number" id="height" name="height" min="100" required>
+
+            <label for="weight">Weight (kg):</label>
+            <input type="number" id="weight" name="weight" min="30" required>
+
+            <button type="submit">Calculate BMR</button>
+        </form>
+
+        {% if bmr %}
+            <div id="result">
+                Your BMR (Harris-Benedict Equation) is approximately {{ bmr }} calories/day.
+            </div>
+        {% endif %}
+    </div>
+</body>
 </html>

@@ -35,6 +35,24 @@ def register():
 @app.route('/Main')
 def Main():
     return render_template('MainPage.html')
+def calculate_bmr(gender, age, height, weight):
+    if gender == 'male':
+        # Harris-Benedict equation for males
+        return round(66.5 + (13.75 * weight) + (5.003 * height) - (6.75 * age))
+    elif gender == 'female':
+        # Harris-Benedict equation for females
+        return round(655.1 + (9.563 * weight) + (1.850 * height) - (4.676 * age))
+@app.route('/CalTrack', methods=['GET','POST'])
+def CalTrack():
+    bmr_result = None
+    if request.method == 'POST':
+        gender = request.form['gender']
+        age = int(request.form['age'])
+        height = float(request.form['height'])
+        weight = float(request.form['weight'])
+        bmr_result = calculate_bmr(gender, age, height, weight)
+    return render_template('CalTrack.html', bmr=bmr_result)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
