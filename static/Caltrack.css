@@ -1,10 +1,10 @@
-body {
+ body {
             background-color: #cacfd2;
-            font-family: Verdana, sans-serif;
+            font-family: Verdana;
         }
         #Header1 {
             margin-top: 3%;
-            margin-left: 40%;
+            margin-left: 36%;
         }
         #BMRCard {
             background-color: white;
@@ -16,15 +16,10 @@ body {
             margin: 5% auto;
             padding: 3%;
         }
-        label {
-            display: block;
-            margin-top: 10px;
-            text-align: left;
-        }
         input, select, button {
             width: 100%;
-            padding: 8px;
-            margin-top: 5px;
+            padding: 10px;
+            margin-top: 10px;
             border-radius: 5px;
             border: 1px solid #ccc;
             font-family: Verdana;
