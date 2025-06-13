@@ -1,0 +1,23 @@
+body { background-color: #cacfd2; font-family: Verdana; }
+#LogCard {
+    background-color: white;
+    border-style: solid;
+    border-radius: 30px;
+    border-width: 0.1cm;
+    max-width: fit-content;
+    margin: 5% auto;
+    padding: 3%;
+    text-align: center;
+}
+input, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+button {
+    background-color: #2e86c1;
+    color: white;
+    font-weight: bold;
+}

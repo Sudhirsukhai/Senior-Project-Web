@@ -1,9 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
-
-app=Flask(__name__)
-
+from datetime import date
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
@@ -15,9 +13,21 @@ def init_db():
         c = conn.cursor()
         c.execute('''
             CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL,
+            calorie_goal INTEGER
+            )
+        ''')
+        c.execute('''
+            CREATE TABLE IF NOT EXISTS meals (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                username TEXT UNIQUE NOT NULL,
-                password TEXT NOT NULL
+                user_id INTEGER,
+                meal_type TEXT,
+                food TEXT NOT NULL,
+                calories INTEGER NOT NULL,
+                date_logged DATE NOT NULL,
+                FOREIGN KEY(user_id) REFERENCES users(id)
             )
         ''')
         conn.commit()
@@ -81,9 +91,72 @@ def login():
 @app.route('/dashboard')
 def dashboard():
     if 'user_id' not in session:
-        flash("Please log in first.", "warning")
         return redirect(url_for('login'))
-    return f"<h1>Welcome, {session['username']}!</h1><a href='/logout'>Logout</a>"
+
+    user_id = session['user_id']
+
+    with sqlite3.connect(DB) as conn:
+        c = conn.cursor()
+        c.execute("SELECT COUNT(*), SUM(calories) FROM meals WHERE user_id = ?", (user_id,))
+        meal_count, total_calories = c.fetchone()
+
+    average = round(total_calories / meal_count, 2) if meal_count > 0 else 0
+
+    # Optional motivational messages
+    if meal_count == 0:
+        message = "Let’s start logging your first meal today!"
+    elif meal_count < 5:
+        message = "Great start! Keep building that streak!"
+    elif meal_count < 15:
+        message = "Awesome! You're building healthy habits!"
+    else:
+        message = "You're a meal-logging master! 🔥"
+
+    return render_template(
+        'MainPage.html',
+        username=session['username'],
+        meal_count=meal_count,
+        total_calories=total_calories or 0,
+        average_calories=average,
+        message=message
+    )
+    
+
+
+
+
+
+
+
+
+@app.route('/log/<meal_type>', methods=['GET', 'POST'])
+def log_meal(meal_type):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    if request.method == 'POST':
+        food = request.form['food']
+        calories = int(request.form['calories'])
+        today = date.today()
+
+        with sqlite3.connect(DB) as conn:
+            c = conn.cursor()
+            c.execute('''
+                INSERT INTO meals (user_id, meal_type, food, calories, date_logged)
+                VALUES (?, ?, ?, ?, ?)
+            ''', (session['user_id'], meal_type, food, calories, today))
+            conn.commit()
+
+        flash(f"{meal_type} logged successfully!", "success")
+        return redirect(url_for('dashboard'))
+
+    return render_template('CalCell.html', meal_type=meal_type)
+
+
+
+
+
+
 
 # Logout
 @app.route('/logout')
@@ -127,9 +200,32 @@ def bmr_page():
 
         bmr = round(calculate_bmr(gender, age, height, weight), 2)
         tdee = round(calculate_tdee(bmr, activity_level), 2)
+        with sqlite3.connect(DB) as conn:
+            c = conn.cursor()
+            c.execute("UPDATE users SET calorie_goal = ? WHERE id = ?", (tdee, session['user_id']))
+            conn.commit()
 
+            flash(f"Calorie goal set to {tdee} kcal/day.", "success")
     return render_template('CalTrack.html', bmr=bmr, tdee=tdee)
 
+
+
+@app.route('/history')
+def meal_history():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    with sqlite3.connect(DB) as conn:
+        c = conn.cursor()
+        c.execute("""
+            SELECT date_logged, meal_type, food, calories
+            FROM meals
+            WHERE user_id = ?
+            ORDER BY date_logged DESC
+        """, (session['user_id'],))
+        meals = c.fetchall()
+
+    return render_template('Meal_History.html', meals=meals)
  
 if __name__ == '__main__':
     init_db()

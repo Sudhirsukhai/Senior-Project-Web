@@ -1,61 +1,70 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="/static/Main.css"><!/Users/sudhi/Desktop/Senior Project 0.1/Senior-Project-Web>
-    </head>
-    <body>
-        <div id="Header2"><h1>Calories Burnt</h1></div>
-        <div id="calBurn">
-            <h1 id="logCal">
-                Calories Burnt
-            </h1><br>
-            <p>
-                Find out how many calories you need per day!!!
-            </p>
-            <a href="{{url_for('bmr_page')}}">Check</a>
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Main.css') }}">
+</head>
+<body>
+    <h1>Welcome, {{ session['username'] }}!<br><a href="{{ url_for('logout') }}">Logout</a></h1>
+    
+    <div id="calBurn">
+        <h1 id="logCal">Calories Needed</h1><br>
+        <p>Find out how many calories you need per day!!!</p>
+        <a href="{{ url_for('bmr_page') }}">Check</a><br>
+        <a href="{{ url_for('meal_history') }}">View Meal History</a>
+    </div>
+
+    <div id="Header1"><h1>Calories</h1></div>
+
+    <div class="container mt-5">
+        <h3 id="logH">Daily Calorie Log</h3>
+        <canvas id="calorieChart"></canvas>
+    </div>
+    <div class="container mt-5">
+    <div class="card text-white bg-info mb-3">
+        <div class="card-header text-center"><h4>You're Doing Great, {{ username }}!</h4></div>
+        <div class="card-body text-center">
+            <p class="card-text"><strong>Meals Logged:</strong> {{ meal_count }}</p>
+            <p class="card-text"><strong>Total Calories:</strong> {{ total_calories }}</p>
+            <p class="card-text"><strong>Average per Meal:</strong> {{ average_calories }} cal</p>
+            <hr>
+            <p class="card-text"><em>{{ message }}</em></p>
         </div>
-        <div id="Header1"><h1>Calories</h1></div>
-        <div id="Breakfast">
-            <h1 id="logBr">
-                Breakfast
-            </h1><br>
-            <img id="brimg" src="\static\breakfast.jpg" alt="Breakfast Plate">
-            <p>
-                Log Your breakfast meals!!
-            </p>
-            <a href="{{url_for('register')}}">Log</a>
-        </div>
-        <div id="Lunch">
-            <h1 id="logLn">
-                Lunch
-            </h1><br>
-            <img src="\static\lunch.jpg" alt="Lunch Plate">
-            <p>
-                Log Your lunch meals!!
-            </p>
-            <a href="{{url_for('register')}}">Log</a>
-        </div>
-        <div id="Dinner">
-            <h1 id="logDn">
-                Dinner
-            </h1><br>
-            <img src="\static\dinner.jpg" alt="Dinner Plate">
-            <p>
-                Log Your dinner meals!!
-            </p>
-            <a href="{{url_for('register')}}">Log</a>
-        </div>
-        <div id="Snacks">
-            <h1 id="logSn">
-                Snacks
-            </h1><br>
-            <img src="\static\Snack.jpeg" alt="Snack Plate">
-            <p>
-                Log Snacks here!!
-            </p>
-            <a href="{{url_for('register')}}">Log</a>
-        </div>
-    </body>
-z</html>  
+    </div>
+</div>
+
+    <div id="Breakfast">
+        <h1 id="logBr">Breakfast</h1><br>
+        <img id="brimg" src="{{ url_for('static', filename='breakfast.jpg') }}" alt="Breakfast Plate">
+        <p>Log Your breakfast meals!!</p>
+        <a href="{{ url_for('log_meal', meal_type='Breakfast') }}">Log</a>
+    </div>
+
+    <div id="Lunch">
+        <h1 id="logLn">Lunch</h1><br>
+        <img src="{{ url_for('static', filename='lunch.jpg') }}" alt="Lunch Plate">
+        <p>Log Your lunch meals!!</p>
+        <a href="{{ url_for('log_meal', meal_type='Lunch') }}">Log</a>
+    </div>
+
+    <div id="Dinner">
+        <h1 id="logDn">Dinner</h1><br>
+        <img src="{{ url_for('static', filename='dinner.jpg') }}" alt="Dinner Plate">
+        <p>Log Your dinner meals!!</p>
+        <a href="{{ url_for('log_meal', meal_type='Dinner') }}">Log</a>
+    </div>
+
+    <div id="Snacks">
+        <h1 id="logSn">Snacks</h1><br>
+        <img src="{{ url_for('static', filename='Snack.jpeg') }}" alt="Snack Plate">
+        <p>Log Snacks here!!</p>
+        <a href="{{ url_for('log_meal', meal_type='Snacks') }}">Log</a>
+    </div>
+
+    
+</body>
+</html>

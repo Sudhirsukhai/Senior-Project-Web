@@ -1,48 +1,50 @@
-body{
+body {
     background-color: #cacfd2;
+    font-family: Verdana, sans-serif;
 }
-#Header1{
-    margin-top: 3%;
-    margin-left:45%;
+
+h1, h2, h3 {
+    text-align: center;
 }
-#Header2{
-    margin-top: 3%;
-    margin-left:41.5%;
-}
-#calBurn{
+
+.card, .table-container {
     background-color: white;
-    border-style:solid;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 30px auto;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    max-width: 800px;
+}
+
+#logH{
+    margin-bottom: -16%;
+}
+
+#Header1, #Header2 {
+    text-align: center;
+    margin-top: 3%;
+}
+
+#Breakfast, #Lunch, #Dinner, #Snacks, #calBurn {
+    background-color: white;
+    border-style: solid;
     border-radius: 30px;
     border-width: 0.1cm;
     text-align-last: center;
     max-width: fit-content;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 5%;
-    padding: 1%;
-    padding-top: 3%;
-    padding-bottom: 3%;
-    font-family:Verdana;
+    margin: 5% auto;
+    padding: 3%;
 }
-#Breakfast,#Lunch,#Dinner,#Snacks{
-    background-color: white;
-    border-style:solid;
-    border-radius: 30px;
-    border-width: 0.1cm;
-    text-align-last: center;
-    max-width: fit-content;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 5%;
-    padding: 1%;
-    padding-top: 3%;
-    padding-bottom: 3%;
-    font-family:Verdana;
-}
-#brimg{
+
+#brimg, #Lunch img, #Dinner img, #Snacks img {
+    height: 200px;
     width: auto;
-    height:200px;
 }
-#logBr,#logLn,#logDn,#logSn{
-    align-self: self-start;
+
+#logBr, #logLn, #logDn, #logSn {
+    align-self: flex-start;
+}
+
+.btn {
+    margin-top: 15px;
 }
